@@ -1,0 +1,1 @@
+package com.baizhi.service;import com.baizhi.entity.Music;/** * Created by dell on 2018/5/30. */public interface MusicService {    public void insertmusic(Music music);}

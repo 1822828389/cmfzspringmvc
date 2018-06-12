@@ -1,0 +1,1 @@
+package com.baizhi.service;import com.baizhi.entity.Artical;import java.util.List;/** * Created by dell on 2018/6/6. */public interface ArticalService {    public List<Artical> queryAll();}

@@ -1,0 +1,26 @@
+[
+  {
+    "id": "customer",
+    "text": "请选择",
+    "iconCls": "icon-add",
+    "state": "open",
+    "children": [
+      {
+        "text": "编号",
+        "id": "id"
+      },
+      {
+        "text": "名字",
+        "id": "name"
+      },
+      {
+        "text": "密码",
+        "id": "password"
+      },
+      {
+        "text": "日期",
+        "id": "date"
+      }
+    ]
+  }
+]

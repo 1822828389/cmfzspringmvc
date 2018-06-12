@@ -1,0 +1,1 @@
+package com.baizhi.service;import com.baizhi.entity.Manager;/** * Created by dell on 2018/5/28. */public interface ManagerService {    public Manager login(String username);    public void changepassword(Manager manager);}
