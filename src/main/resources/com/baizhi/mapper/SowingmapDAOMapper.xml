@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.daos.SowingmapDao">
+    <insert id="insert" parameterType="Sowingmap">
+        insert into sowingmap (id,desc1,path,imagestatus,oldname,uploadtime,title)
+        values (#{id},#{desc1},#{path},#{imagestatus},#{oldname},#{uploadtime},#{title})
+    </insert>
+
+    <delete id="deletes" parameterType="java.lang.String">
+        delete from sowingmap where id in
+        <foreach collection="list" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
+    <update id="update" parameterType="Sowingmap">
+        update sowingmap set imagestatus=#{imagestatus} where id=#{id}
+    </update>
+
+    <select id="queryall" resultType="Sowingmap">
+        select * from sowingmap LIMIT #{start},#{end}
+    </select>
+    <select id="querySize" resultType="java.lang.Integer">
+        select count(*) from sowingmap
+    </select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

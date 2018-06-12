@@ -1,0 +1,1 @@
+package com.baizhi.daos;import com.baizhi.entity.Manager;/** * Created by dell on 2018/5/25. */public interface ManagerDao {    public Manager login(String username);    public void changepassword(Manager manager);}

@@ -1,0 +1,1 @@
+package com.baizhi.daos;import com.baizhi.entity.Album;import java.util.List;/** * Created by dell on 2018/5/30. */public interface AlbumDao {    public void insertAlbum(Album album);    public List<Album> queryall();    public Album queryAlbumbyid(String id);    public void updateCount(Album album);}

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.daos.AlbumDao">
+    <resultMap id="res1" type="com.baizhi.entity.Album">
+        <id column="fid" property="id"/>
+        <result column="ftitle" property="title"/>
+        <result column="fuploadtime" property="uploadtime"/>
+        <result column="fauthor" property="author"/>
+        <result column="fboyinyuan" property="boyinyuan"/>
+        <result column="fzhangjieshu" property="zhangjieshu"/>
+        <result column="fcoverimage" property="coverimage"/>
+        <result column="fnewname" property="newname"/>
+        <result column="fjianjie" property="jianjie"/>
+        <result column="fpublishtime" property="publishtime"/>
+        <result column="fscore" property="score"/>
+        <collection property="children" ofType="com.baizhi.entity.Music">
+            <id column="cid" property="id"/>
+            <result column="ctitle" property="title"/>
+            <result column="cfilesize" property="filesize"/>
+            <result column="cpath" property="path"/>
+            <result column="cuploadtime" property="uploadtime"/>
+            <result column="curl" property="url"/>
+            <result column="cpic" property="pic"/>
+            <result column="calbum_id" property="album_id"/>
+        </collection>
+    </resultMap>
+
+    <select id="queryall" resultMap="res1">
+        select f.id fid,f.title ftitle,f.uploadtime fuploadtime,f.author fauthor,f.boyinyuan fboyinyuan,f.zhangjieshu fzhangjieshu,f.coverimage fcoverimage,f.newname fnewname,f.jianjie fjianjie,f.publishtime fpublishtime,f.score fscore
+        ,c.id cid,c.title ctitle,c.filesize cfilesize,c.path cpath,c.uploadtime cuploadtime,c.url curl,c.pic cpic,c.album_id calbum_id
+        from album f left join music c
+        on f.id=c.album_id
+    </select>
+
+    <insert id="insertAlbum" parameterType="Album">
+        insert into album (id,title,uploadtime,author,boyinyuan,zhangjieshu,coverimage,newname,jianjie,publishtime,score) values
+        (#{id},#{title},#{uploadtime},#{author},#{boyinyuan},#{zhangjieshu},#{coverimage},#{newname},#{jianjie},#{publishtime},#{score})
+    </insert>
+
+    <select id="queryAlbumbyid" parameterType="java.lang.String" resultType="Album">
+        select id,title,uploadtime,author,boyinyuan,zhangjieshu,coverimage,newname,jianjie,publishtime,score
+        from album where id=#{id}
+    </select>
+
+    <update id="updateCount" parameterType="Album">
+        update album set zhangjieshu=#{zhangjieshu} where id=#{id}
+    </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

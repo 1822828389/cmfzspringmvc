@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.baizhi.daos.UserDao">
+
+    <select id="queryAll" resultType="User">
+        select id,username,faname,email,tel,password,sex,head_pic,sign,userstatus,salt,regtime,teacher_id,province,city,ulocation from user
+    </select>
+
+    <update id="updateUser" parameterType="User">
+        update user set userstatus=#{userstatus} where id=#{id}
+    </update>
+
+    <select id="queryNumByDate" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from user  where DATE_SUB(CURDATE(), INTERVAL #{dates} DAY) &lt;= date(regtime)
+    </select>
+
+    <select id="queryNumByProAndSex" resultType="ProvinceVO" parameterType="java.lang.String">
+        select province as name,count(*) as value from user where sex=#{sex} GROUP BY province ;
+    </select>
+
+    <insert id="insertUser" parameterType="User">
+        insert into user (id,username,faname,email,tel,password,sex,head_pic,sign,userstatus,salt,regtime,teacher_id,province,city,ulocation)values
+        <foreach collection="list" item="user" index="index" separator=",">
+            (#{user.id},#{user.username},#{user.faname},#{user.email},#{user.tel},#{user.password},#{user.sex},#{user.head_pic},#{user.sign},#{user.userstatus},#{user.salt},#{user.regtime},#{user.teacher_id},#{user.province},#{user.city},#{user.ulocation})
+        </foreach>
+    </insert>
+
+    <select id="queryByPage" resultType="User">
+        select * from user LIMIT #{start},#{end}
+    </select>
+
+    <select id="querySize" resultType="java.lang.Integer">
+        select count(*) from user
+    </select>
+
+    <select id="queryByTel" resultType="User" parameterType="java.lang.String">
+        select * from user where tel=#{tel}
+    </select>
+    <select id="queryById" resultType="User" parameterType="java.lang.String">
+        select * from user where id=#{id}
+    </select>
+
+    <insert id="registeruser" parameterType="User" >
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                id,
+            </if>
+            <if test="username != null" >
+                username,
+            </if>
+            <if test="faname != null" >
+                faname,
+            </if>
+            <if test="email != null" >
+                email,
+            </if>
+            <if test="tel != null" >
+                tel,
+            </if>
+            <if test="password != null" >
+                password,
+            </if>
+            <if test="sex != null" >
+                sex,
+            </if>
+            <if test="head_pic != null" >
+                head_pic,
+            </if>
+            <if test="sign != null" >
+                sign,
+            </if>
+            <if test="userstatus != null" >
+                userstatus,
+            </if>
+            <if test="salt != null" >
+                salt,
+            </if>
+            <if test="regtime != null" >
+                regtime,
+            </if>
+            <if test="teacher_id != null" >
+                teacher_id,
+            </if>
+            <if test="province != null" >
+                province,
+            </if>
+            <if test="city != null" >
+                city,
+            </if>
+            <if test="ulocation != null" >
+                ulocation,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null" >
+                #{id,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="faname != null" >
+                #{faname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="head_pic != null" >
+                #{head_pic,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null" >
+                #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="userstatus != null" >
+                #{userstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null" >
+                #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="regtime != null" >
+                #{regtime,jdbcType=DATE},
+            </if>
+            <if test="teacher_id != null" >
+                #{teacher_id,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null" >
+                #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null" >
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="ulocation != null" >
+                #{ulocation,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <update id="updateUsers" parameterType="com.baizhi.entity.User" >
+        update user
+        <set >
+            <if test="username != null" >
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="faname != null" >
+                faname = #{faname,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null" >
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+            <if test="tel != null" >
+                tel = #{tel,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                sex = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="head_pic != null" >
+                head_pic = #{head_pic,jdbcType=VARCHAR},
+            </if>
+            <if test="sign != null" >
+                sign = #{sign,jdbcType=VARCHAR},
+            </if>
+            <if test="userstatus != null" >
+                userstatus = #{userstatus,jdbcType=VARCHAR},
+            </if>
+            <if test="salt != null" >
+                salt = #{salt,jdbcType=VARCHAR},
+            </if>
+            <if test="regtime != null" >
+                regtime = #{regtime,jdbcType=DATE},
+            </if>
+            <if test="teacher_id != null" >
+                teacher_id = #{teacher_id,jdbcType=VARCHAR},
+            </if>
+            <if test="province != null" >
+                province = #{province,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null" >
+                city = #{city,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where id = #{id,jdbcType=VARCHAR}
+    </update>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,1 @@
+package com.baizhi.daos;import com.baizhi.entity.Artical;import java.util.List;/** * Created by dell on 2018/6/6. */public interface ArticalDao {    List<Artical> queryAll();}

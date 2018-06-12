@@ -1,0 +1,1 @@
+package com.baizhi.daos;import com.baizhi.entity.Music;/** * Created by dell on 2018/5/30. */public interface MusicDao {    public void insertmusic(Music music);}
